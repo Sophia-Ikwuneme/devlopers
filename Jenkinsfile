@@ -43,7 +43,7 @@ pipeline {
         stage('Deploy to stage') {
             steps {
                 sshagent (['ansible-key']) {
-                      sh 'ssh -t -t ec2-user@13.37.227.163 -o StrictHostKeyChecking=no "cd /etc/ansible && ansible-playbook stage-trigger.yml -e ansible_python_interpreter=/usr/bin/python3"'
+                      sh 'ssh -t -t ec2-user@35.180.255.134 -o StrictHostKeyChecking=no "cd /etc/ansible && ansible-playbook stage-trigger.yml -e ansible_python_interpreter=/usr/bin/python3"'
                 }
             }
         }
@@ -51,7 +51,7 @@ pipeline {
             steps {
                 slackSend channel: 'Cloudhight',
                 message: 'App deployed to Stage, needs approval to deploy to prod',
-                teamDomain: '21st-august-pet-adoption-auto-discovery-project-eu-team-2',
+                teamDomain: '24th-july-sock-shop-microservices-kubernetes-project---eu-team-1',
                 tokenCredentialId: 'slack'
             }
         }
@@ -65,7 +65,7 @@ pipeline {
         stage('Deploy to prod'){
             steps{
                 sshagent(['ansible-key']) {
-                  sh 'ssh -t -t ec2-user@13.37.227.163 -o strictHostKeyChecking=no "cd /etc/ansible && ansible-playbook prod-trigger.yml -e ansible_python_interpreter=/usr/bin/python3"'
+                  sh 'ssh -t -t ec2-user@35.180.255.134 -o strictHostKeyChecking=no "cd /etc/ansible && ansible-playbook prod-trigger.yml -e ansible_python_interpreter=/usr/bin/python3"'
                 }
             }
         } 
