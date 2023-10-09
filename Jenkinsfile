@@ -43,7 +43,7 @@ pipeline {
         stage('Deploy to stage') {
             steps {
                 sshagent (['ansible-key']) {
-                      sh 'ssh -t -t ec2-user@15.237.211.113 -o StrictHostKeyChecking=no "cd /etc/ansible && ansible-playbook stage-trigger.yml -e ansible_python_interpreter=/usr/bin/python3"'
+                      sh 'ssh -t -t ec2-user@35.180.199.137 -o StrictHostKeyChecking=no "cd /etc/ansible && ansible-playbook stage-trigger.yml -e ansible_python_interpreter=/usr/bin/python3"'
                 }
             }
         }
@@ -57,7 +57,7 @@ pipeline {
         stage('Deploy to prod'){
             steps{
                 sshagent(['ansible-key']) {
-                  sh 'ssh -t -t ec2-user@15.237.211.113 -o strictHostKeyChecking=no "cd /etc/ansible && ansible-playbook prod-trigger.yml -e ansible_python_interpreter=/usr/bin/python3"'
+                  sh 'ssh -t -t ec2-user@35.180.199.137 -o strictHostKeyChecking=no "cd /etc/ansible && ansible-playbook prod-trigger.yml -e ansible_python_interpreter=/usr/bin/python3"'
                 }
             }
         } 
